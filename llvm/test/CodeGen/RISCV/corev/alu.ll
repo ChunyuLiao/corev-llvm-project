@@ -135,7 +135,8 @@ define i32 @clipr(i32 %a, i32 %b) {
 define i32 @clipu(i32 %a) {
 ; CHECK-LABEL: clipu:
 ; CHECK:       # %bb.0:
-; CHECK-NEXT:    cv.clipu a0, a0, 5
+; CHECK-NEXT:    li a1, 15
+; CHECK-NEXT:    cv.minu a0, a0, a1
 ; CHECK-NEXT:    ret
   %1 = call i32 @llvm.umax.i32(i32 %a, i32 0)
   %2 = call i32 @llvm.umin.i32(i32 %1, i32 15)
@@ -145,7 +146,7 @@ define i32 @clipu(i32 %a) {
 define i32 @clipur(i32 %a, i32 %b) {
 ; CHECK-LABEL: clipur:
 ; CHECK:       # %bb.0:
-; CHECK-NEXT:    cv.clipur a0, a0, a1
+; CHECK-NEXT:    cv.minu a0, a0, a1
 ; CHECK-NEXT:    ret
   %1 = call i32 @llvm.umax.i32(i32 %a, i32 0)
   %2 = call i32 @llvm.umin.i32(i32 %1, i32 %b)
