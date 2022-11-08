@@ -133,6 +133,17 @@ let Predicates = [HasExtXCoreVMac], hasSideEffects = 0, mayLoad = 0, mayStore = 
                     Sched<[]>;
 } // Predicates = [HasExtXCoreVMac], hasSideEffects = 0, mayLoad = 0, mayStore = 0, Constraints = "$rd = $rd_wb"
 
+let Predicates = [HasStdExtXCoreVAluOrV2], hasSideEffects = 0, mayLoad = 0, mayStore = 0 in {
+  def CV_EXTHZ  : RVInstAlu_r<0b0001000, 0b101, (outs GPR:$rd), (ins GPR:$rs1),
+                              "cv.exthz", "$rd, $rs1", []>,
+                  Sched<[]>;
+}
+
+
+let Predicates = [HasExtXCoreVAluV2] in {
+  def : InstAlias<"cv.exths $rd, $rs1", (CV_EXTHZ GPR:$rd, GPR:$rs1)>;
+}
+
 let Predicates = [HasExtXCoreVMac], hasSideEffects = 0, mayLoad = 0, mayStore = 0 in {
   // Signed 16x16 bit muls
   def CV_MULS     : RVInstMac16<0b10, 0b000, (outs GPR:$rd), (ins GPR:$rs1, GPR:$rs2),
@@ -204,9 +215,6 @@ let Predicates = [HasExtXCoreVAlu], hasSideEffects = 0, mayLoad = 0, mayStore = 
                   Sched<[]>;
   def CV_EXTHS  : RVInstAlu_r<0b0001000, 0b100, (outs GPR:$rd), (ins GPR:$rs1),
                               "cv.exths", "$rd, $rs1", []>,
-                  Sched<[]>;
-  def CV_EXTHZ  : RVInstAlu_r<0b0001000, 0b101, (outs GPR:$rd), (ins GPR:$rs1),
-                              "cv.exthz", "$rd, $rs1", []>,
                   Sched<[]>;
   def CV_EXTBS  : RVInstAlu_r<0b0001000, 0b110, (outs GPR:$rd), (ins GPR:$rs1),
                               "cv.extbs", "$rd, $rs1", []>,
@@ -521,6 +529,10 @@ let Predicates = [HasExtXCoreVMac] in {
 //===----------------------------------------------------------------------===//
 // Patterns for general ALU operations
 //===----------------------------------------------------------------------===//
+
+let Predicates = [HasExtXCoreVAluV2] in {
+  def : Pat<(sext_inreg GPR:$rs1, i16), (CV_EXTHZ GPR:$rs1)>;
+}
 
 let Predicates = [HasExtXCoreVAlu] in {
 
