@@ -465,6 +465,15 @@ DecodeStatus RISCVDisassembler::getInstruction(MCInst &MI, uint64_t &Size,
         return Result;
       }
     }
+    if (STI.getFeatureBits()[RISCV::FeatureExtXCoreVAluV2]) {
+      LLVM_DEBUG(dbgs() << "Trying XCoreVAluV2 custom opcode table:\n");
+      Result = decodeInstruction(DecoderTableXCoreVAluV232, MI, Insn, Address, this,
+                                 STI);
+      if (Result != MCDisassembler::Fail) {
+        Size = 4;
+        return Result;
+      }
+    }
     LLVM_DEBUG(dbgs() << "Trying RISCV32 table :\n");
     Result = decodeInstruction(DecoderTable32, MI, Insn, Address, this, STI);
     Size = 4;

@@ -133,6 +133,22 @@ let Predicates = [HasExtXCoreVMac], hasSideEffects = 0, mayLoad = 0, mayStore = 
                     Sched<[]>;
 } // Predicates = [HasExtXCoreVMac], hasSideEffects = 0, mayLoad = 0, mayStore = 0, Constraints = "$rd = $rd_wb"
 
+let Predicates = [HasExtXCoreVAluV2], hasSideEffects = 0, mayLoad = 0, mayStore = 0, 
+                 DecoderNamespace = "XCoreVAluV2" in {
+  def CV2_EXTHS  : CV2_RVInstAlu_r<0b0110000, 0b011, (outs GPR:$rd), (ins GPR:$rs1),
+                              "cv.exths", "$rd, $rs1", []>,
+                  Sched<[]>;
+  def CV2_EXTHZ  : CV2_RVInstAlu_r<0b0110001, 0b011, (outs GPR:$rd), (ins GPR:$rs1),
+                              "cv.exthz", "$rd, $rs1", []>,
+                  Sched<[]>;
+  def CV2_EXTBS  : CV2_RVInstAlu_r<0b0110010, 0b011, (outs GPR:$rd), (ins GPR:$rs1),
+                              "cv.extbs", "$rd, $rs1", []>,
+                  Sched<[]>;
+  def CV2_EXTBZ  : CV2_RVInstAlu_r<0b0110011, 0b011, (outs GPR:$rd), (ins GPR:$rs1),
+                              "cv.extbz", "$rd, $rs1", []>,
+                  Sched<[]>;
+}
+
 let Predicates = [HasExtXCoreVMac], hasSideEffects = 0, mayLoad = 0, mayStore = 0 in {
   // Signed 16x16 bit muls
   def CV_MULS     : RVInstMac16<0b10, 0b000, (outs GPR:$rd), (ins GPR:$rs1, GPR:$rs2),
@@ -521,6 +537,10 @@ let Predicates = [HasExtXCoreVMac] in {
 //===----------------------------------------------------------------------===//
 // Patterns for general ALU operations
 //===----------------------------------------------------------------------===//
+
+let Predicates = [HasExtXCoreVAluV2] in {
+  def : Pat<(sext_inreg GPR:$rs1, i16), (CV2_EXTHS GPR:$rs1)>;
+}
 
 let Predicates = [HasExtXCoreVAlu] in {
 

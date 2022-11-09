@@ -420,7 +420,7 @@ RISCVTargetLowering::RISCVTargetLowering(const TargetMachine &TM,
   if (Subtarget.is64Bit())
     setOperationAction(ISD::INTRINSIC_WO_CHAIN, MVT::i32, Custom);
 
-  if (Subtarget.hasExtXCoreVAlu()) {
+  if (Subtarget.hasExtXCoreVAlu() || Subtarget.hasExtXCoreVAluV2()) {
     setOperationAction(ISD::ABS, XLenVT, Legal);
     setOperationAction(ISD::SMIN, XLenVT, Legal);
     setOperationAction(ISD::UMIN, XLenVT, Legal);
