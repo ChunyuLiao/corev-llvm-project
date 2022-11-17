@@ -149,6 +149,59 @@ let Predicates = [HasExtXCoreVAluV2], hasSideEffects = 0, mayLoad = 0, mayStore 
                   Sched<[]>;
 }
 
+let hasSideEffects = 0, mayLoad = 0, mayStore = 0 in
+class SIMDALU_rr<bits<7> funct7, bits<3> funct3, string opcodestr>
+    : RVInstSIMDR<funct7, funct3, OPC_CUSTOM3, (outs GPR:$rd),
+              (ins GPR:$rs1, GPR:$rs2), opcodestr, "$rd, $rs1, $rs2"> {
+}
+
+let Predicates = [HasExtXCoreVSIMD], hasSideEffects = 0, mayLoad = 0, mayStore = 0 in {
+  def CV_ADD_H :    SIMDALU_rr<0b0000000, 0b000, "cv.add.h">;
+  def CV_ADD_B :    SIMDALU_rr<0b0000000, 0b001, "cv.add.b">;
+  def CV_ADD_SC_H : SIMDALU_rr<0b0000000, 0b010, "cv.add.sc.h">;
+  def CV_ADD_SC_B : SIMDALU_rr<0b0000000, 0b011, "cv.add.sc.b">;
+
+  def CV_SUB_H :    SIMDALU_rr<0b0000100, 0b000, "cv.sub.h">;
+  def CV_SUB_B :    SIMDALU_rr<0b0000100, 0b001, "cv.sub.b">;
+  def CV_SUB_SC_H : SIMDALU_rr<0b0000100, 0b100, "cv.sub.sc.h">;
+  def CV_SUB_SC_B : SIMDALU_rr<0b0000100, 0b101, "cv.sub.sc.b">;
+
+  def CV_AVG_H :    SIMDALU_rr<0b0001000, 0b000, "cv.avg.h">;
+  def CV_AVG_B :    SIMDALU_rr<0b0001000, 0b001, "cv.avg.b">;
+  def CV_AVG_SC_H : SIMDALU_rr<0b0001000, 0b100, "cv.avg.sc.h">;
+  def CV_AVG_SC_B : SIMDALU_rr<0b0001000, 0b101, "cv.avg.sc.b">;
+
+  def CV_AVGU_H :    SIMDALU_rr<0b0001100, 0b000, "cv.avgu.h">;
+  def CV_AVGU_B :    SIMDALU_rr<0b0001100, 0b001, "cv.avgu.b">;
+  def CV_AVGU_SC_H : SIMDALU_rr<0b0001100, 0b100, "cv.avgu.sc.h">;
+  def CV_AVGU_SC_B : SIMDALU_rr<0b0001100, 0b101, "cv.avgu.sc.b">;
+
+  def CV_MIN_H :    SIMDALU_rr<0b0010000, 0b000, "cv.min.h">;
+  def CV_MIN_B :    SIMDALU_rr<0b0010000, 0b001, "cv.min.b">;
+  def CV_MIN_SC_H : SIMDALU_rr<0b0010000, 0b100, "cv.min.sc.h">;
+  def CV_MIN_SC_B : SIMDALU_rr<0b0010000, 0b101, "cv.min.sc.b">;
+
+  def CV_MINU_H :    SIMDALU_rr<0b0010100, 0b000, "cv.minu.h">;
+  def CV_MINU_B :    SIMDALU_rr<0b0010100, 0b001, "cv.minu.b">;
+  def CV_MINU_SC_H : SIMDALU_rr<0b0010100, 0b100, "cv.minu.sc.h">;
+  def CV_MINU_SC_B : SIMDALU_rr<0b0010100, 0b101, "cv.minu.sc.b">;
+
+  def CV_MAX_H :    SIMDALU_rr<0b0011000, 0b000, "cv.min.h">;
+  def CV_MAX_B :    SIMDALU_rr<0b0011000, 0b001, "cv.min.b">;
+  def CV_MAX_SC_H : SIMDALU_rr<0b0011000, 0b100, "cv.min.sc.h">;
+  def CV_MAX_SC_B : SIMDALU_rr<0b0011000, 0b101, "cv.min.sc.b">;
+
+  def CV_MAXU_H :    SIMDALU_rr<0b0011100, 0b000, "cv.mu.h">;
+  def CV_MAXU_B :    SIMDALU_rr<0b0011100, 0b001, "cv.minu.b">;
+  def CV_MAXU_SC_H : SIMDALU_rr<0b0011100, 0b100, "cv.minu.sc.h">;
+  def CV_MAXU_SC_B : SIMDALU_rr<0b0011100, 0b101, "cv.minu.sc.b">;  
+
+  def CV_SRL_H :    SIMDALU_rr<0b0100000, 0b000, "cv.srl.h">;
+  def CV_SRL_B :    SIMDALU_rr<0b0100000, 0b001, "cv.srl.b">;
+  def CV_SRL_SC_H : SIMDALU_rr<0b0100000, 0b100, "cv.srl.sc.h">;
+  def CV_SRL_SC_B : SIMDALU_rr<0b0100000, 0b101, "cv.srl.sc.b">;
+}
+
 let Predicates = [HasExtXCoreVMac], hasSideEffects = 0, mayLoad = 0, mayStore = 0 in {
   // Signed 16x16 bit muls
   def CV_MULS     : RVInstMac16<0b10, 0b000, (outs GPR:$rd), (ins GPR:$rs1, GPR:$rs2),

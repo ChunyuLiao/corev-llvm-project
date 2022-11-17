@@ -296,3 +296,19 @@ class CV2_RVInstAlu_r<bits<7> funct7, bits<3> funct3, dag outs, dag ins,
   let Inst{11-7} = rd;
   let Opcode = OPC_CUSTOM1.Value;
 }
+
+
+class RVInstSIMDR<bits<7> funct7, bits<3> funct3, RISCVOpcode opcode, dag outs,
+              dag ins, string opcodestr, string argstr>
+    : RVInst<outs, ins, opcodestr, argstr, [], InstFormatR> {
+  bits<5> rs2;
+  bits<5> rs1;
+  bits<5> rd;
+
+  let Inst{31-25} = funct7;
+  let Inst{24-20} = rs2;
+  let Inst{19-15} = rs1;
+  let Inst{14-12} = funct3;
+  let Inst{11-7} = rd;
+  let Opcode = opcode.Value;
+}

@@ -449,6 +449,14 @@ def HasExtXCoreVAluV2
                AssemblerPredicate<(any_of FeatureExtXCoreVAluV2),
                "'Xcorevaluv2' (Multiply-Accumulate)">;
 
+def FeatureExtXCoreVSIMD
+    : SubtargetFeature<"xcorevsimd", "HasExtXCoreVSIMD", "true",
+                       "'Xcorevsimd' (SIMD ALU)">;
+def HasExtXCoreVSIMD
+    : Predicate<"Subtarget->hasExtXCoreVSIMD()">,
+               AssemblerPredicate<(any_of FeatureExtXCoreVSIMD),
+               "'Xcorevsimd' (SIMD ALU)">;
+
 // CORE-V Load-Store Extension
 def FeatureExtXCoreVMem
     : SubtargetFeature<"xcorevmem", "HasExtXCoreVMem", "true",
