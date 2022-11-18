@@ -200,6 +200,79 @@ let Predicates = [HasExtXCoreVSIMD], hasSideEffects = 0, mayLoad = 0, mayStore =
   def CV_SRL_B :    SIMDALU_rr<0b0100000, 0b001, "cv.srl.b">;
   def CV_SRL_SC_H : SIMDALU_rr<0b0100000, 0b100, "cv.srl.sc.h">;
   def CV_SRL_SC_B : SIMDALU_rr<0b0100000, 0b101, "cv.srl.sc.b">;
+
+  def CV_SRA_H :    SIMDALU_rr<0b0100100, 0b000, "cv.sra.h">;
+  def CV_SRA_B :    SIMDALU_rr<0b0100100, 0b001, "cv.sra.b">;
+  def CV_SRA_SC_H : SIMDALU_rr<0b0100100, 0b100, "cv.sra.sc.h">;
+  def CV_SRA_SC_B : SIMDALU_rr<0b0100100, 0b101, "cv.sra.sc.b">;
+
+  def CV_SLL_H :    SIMDALU_rr<0b0101000, 0b000, "cv.sll.h">;
+  def CV_SLL_B :    SIMDALU_rr<0b0101000, 0b001, "cv.sll.b">;
+  def CV_SLL_SC_H : SIMDALU_rr<0b0101000, 0b100, "cv.sll.sc.h">;
+  def CV_SLL_SC_B : SIMDALU_rr<0b0101000, 0b101, "cv.sll.sc.b">;
+
+  def CV_OR_H :     SIMDALU_rr<0b0101100, 0b000, "cv.or.h">;
+  def CV_OR_B :     SIMDALU_rr<0b0101100, 0b001, "cv.or.b">;
+  def CV_OR_SC_H :  SIMDALU_rr<0b0101100, 0b100, "cv.or.sc.h">;
+  def CV_OR_SC_B :  SIMDALU_rr<0b0101100, 0b101, "cv.or.sc.b">;
+
+  def CV_XOR_H :    SIMDALU_rr<0b0110000, 0b000, "cv.xor.h">;
+  def CV_XOR_B :    SIMDALU_rr<0b0110000, 0b001, "cv.xor.b">;
+  def CV_XOR_SC_H : SIMDALU_rr<0b0110000, 0b100, "cv.xor.sc.h">;
+  def CV_XOR_SC_B : SIMDALU_rr<0b0110000, 0b101, "cv.xor.sc.b">; 
+ 
+  def CV_AND_H :    SIMDALU_rr<0b0110100, 0b000, "cv.and.h">;
+  def CV_AND_B :    SIMDALU_rr<0b0110100, 0b001, "cv.and.b">;
+  def CV_AND_SC_H : SIMDALU_rr<0b0110100, 0b100, "cv.and.sc.h">;
+  def CV_AND_SC_B : SIMDALU_rr<0b0110100, 0b101, "cv.and.sc.b">;
+
+  def CV_ABS_H :    SIMDALU_rr<0b0111000, 0b000, "cv.abs.h">;
+  def CV_ABS_B :    SIMDALU_rr<0b0111000, 0b001, "cv.abs.b">;
+    
+  def CV_DOTUP_H :    SIMDALU_rr<0b1000000, 0b000, "cv.dotup.h">;
+  def CV_DOTUP_B :    SIMDALU_rr<0b1000000, 0b001, "cv.dotup.b">;
+  def CV_DOTUP_SC_H : SIMDALU_rr<0b1000000, 0b100, "cv.dotup.sc.h">;
+  def CV_DOTUP_SC_B : SIMDALU_rr<0b1000000, 0b101, "cv.dotup.sc.b">;
+
+  def CV_DOTUSP_H :    SIMDALU_rr<0b1000100, 0b000, "cv.dotusp.h">;
+  def CV_DOTUSP_B :    SIMDALU_rr<0b1000100, 0b001, "cv.dotusp.b">;
+  def CV_DOTUSP_SC_H : SIMDALU_rr<0b1000100, 0b100, "cv.dotusp.sc.h">;
+  def CV_DOTUSP_SC_B : SIMDALU_rr<0b1000100, 0b101, "cv.dotusp.sc.b">;
+
+  def CV_DOTSP_H :    SIMDALU_rr<0b1001000, 0b000, "cv.dotsp.h">;
+  def CV_DOTSP_B :    SIMDALU_rr<0b1001000, 0b001, "cv.dotsp.b">;
+  def CV_DOTSP_SC_H : SIMDALU_rr<0b1001000, 0b100, "cv.dotsp.sc.h">;
+  def CV_DOTSP_SC_B : SIMDALU_rr<0b1001000, 0b101, "cv.dotsp.sc.b">;
+
+  def CV_SDOTUP_H :    SIMDALU_rr<0b1001100, 0b000, "cv.sdotup.h">;
+  def CV_SDOTUP_B :    SIMDALU_rr<0b1001100, 0b001, "cv.sdotup.b">;
+  def CV_SDOTUP_SC_H : SIMDALU_rr<0b1001100, 0b100, "cv.sdotup.sc.h">;
+  def CV_SDOTUP_SC_B : SIMDALU_rr<0b1001100, 0b101, "cv.sdotup.sc.b">;
+
+  def CV_SDOTUSP_H :    SIMDALU_rr<0b1010000, 0b000, "cv.sdotusp.h">;
+  def CV_SDOTUSP_B :    SIMDALU_rr<0b1010000, 0b001, "cv.sdotusp.b">;
+  def CV_SDOTUSP_SC_H : SIMDALU_rr<0b1010000, 0b100, "cv.sdotusp.sc.h">;
+  def CV_SDOTUSP_SC_B : SIMDALU_rr<0b1010000, 0b101, "cv.sdotusp.sc.b">;
+
+  def CV_SDOTSP_H :    SIMDALU_rr<0b1010100, 0b000, "cv.sdotsp.h">;
+  def CV_SDOTSP_B :    SIMDALU_rr<0b1010100, 0b001, "cv.sdotsp.b">;
+  def CV_SDOTSP_SC_H : SIMDALU_rr<0b1010100, 0b100, "cv.sdotsp.sc.h">;
+  def CV_SDOTSP_SC_B : SIMDALU_rr<0b1010100, 0b101, "cv.sdotsp.sc.b">;   
+
+  def CV_SHUFFLE_H :    SIMDALU_rr<0b1100000, 0b000, "cv.shuffle.h">;
+  def CV_SHUFFLE_B :    SIMDALU_rr<0b1100000, 0b001, "cv.shuffle.b">;
+
+  def CV_SHUFFLE2_H :    SIMDALU_rr<0b1110000, 0b000, "cv.shuffle2.h">;
+  def CV_SHUFFLE2_B :    SIMDALU_rr<0b1110000, 0b001, "cv.shuffle2.b">;
+
+  def CV_PACK :      SIMDALU_rr<0b1111000, 0b000, "cv.pack">;
+  def CV_PACK_H :    SIMDALU_rr<0b1111001, 0b000, "cv.pack.h">;
+  
+  def CV_PACKHI_B :    SIMDALU_rr<0b1111101, 0b001, "cv.packhi.b">;
+  def CV_PACKLO_B :    SIMDALU_rr<0b1111100, 0b001, "cv.packlo.b">;
+  
+  
+  
 }
 
 let Predicates = [HasExtXCoreVMac], hasSideEffects = 0, mayLoad = 0, mayStore = 0 in {
