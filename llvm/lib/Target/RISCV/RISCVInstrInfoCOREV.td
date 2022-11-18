@@ -271,8 +271,87 @@ let Predicates = [HasExtXCoreVSIMD], hasSideEffects = 0, mayLoad = 0, mayStore =
   def CV_PACKHI_B :    SIMDALU_rr<0b1111101, 0b001, "cv.packhi.b">;
   def CV_PACKLO_B :    SIMDALU_rr<0b1111100, 0b001, "cv.packlo.b">;
   
+  def CV_CMPEQ_H :    SIMDALU_rr<0b0000010, 0b000, "cv.cmpeq.h">;
+  def CV_CMPEQ_B :    SIMDALU_rr<0b0000010, 0b001, "cv.cmpeq.b">;
+  def CV_CMPEQ_SC_H : SIMDALU_rr<0b0000010, 0b100, "cv.cmpeq.sc.h">;
+  def CV_CMPEQ_SC_B : SIMDALU_rr<0b0000010, 0b101, "cv.cmpeq.sc.b">; 
+
+  def CV_CMPNE_H :    SIMDALU_rr<0b0000110, 0b000, "cv.cmpne.h">;
+  def CV_CMPNE_B :    SIMDALU_rr<0b0000110, 0b001, "cv.cmpne.b">;
+  def CV_CMPNE_SC_H : SIMDALU_rr<0b0000110, 0b100, "cv.cmpne.sc.h">;
+  def CV_CMPNE_SC_B : SIMDALU_rr<0b0000110, 0b101, "cv.cmpne.sc.b">;
   
+  def CV_CMPGT_H :    SIMDALU_rr<0b0001010, 0b000, "cv.cmpgt.h">;
+  def CV_CMPGT_B :    SIMDALU_rr<0b0001010, 0b001, "cv.cmpgt.b">;
+  def CV_CMPGT_SC_H : SIMDALU_rr<0b0001010, 0b100, "cv.cmpgt.sc.h">;
+  def CV_CMPGT_SC_B : SIMDALU_rr<0b0001010, 0b101, "cv.cmpgt.sc.b">;
+ 
+  def CV_CMPGE_H :    SIMDALU_rr<0b0001110, 0b000, "cv.cmpge.h">;
+  def CV_CMPGE_B :    SIMDALU_rr<0b0001110, 0b001, "cv.cmpge.b">;
+  def CV_CMPGE_SC_H : SIMDALU_rr<0b0001110, 0b100, "cv.cmpge.sc.h">;
+  def CV_CMPGE_SC_B : SIMDALU_rr<0b0001110, 0b101, "cv.cmpge.sc.b">;
+
+  def CV_CMPLT_H :    SIMDALU_rr<0b0010010, 0b000, "cv.cmplt.h">;
+  def CV_CMPLT_B :    SIMDALU_rr<0b0010010, 0b001, "cv.cmplt.b">;
+  def CV_CMPLT_SC_H : SIMDALU_rr<0b0010010, 0b100, "cv.cmplt.sc.h">;
+  def CV_CMPLT_SC_B : SIMDALU_rr<0b0010010, 0b101, "cv.cmplt.sc.b">; 
   
+  def CV_CMPLE_H :    SIMDALU_rr<0b0010110, 0b000, "cv.cmple.h">;
+  def CV_CMPLE_B :    SIMDALU_rr<0b0010110, 0b001, "cv.cmple.b">;
+  def CV_CMPLE_SC_H : SIMDALU_rr<0b0010110, 0b100, "cv.cmple.sc.h">;
+  def CV_CMPLE_SC_B : SIMDALU_rr<0b0010110, 0b101, "cv.cmple.sc.b">; 
+
+  def CV_CMPGTU_H :    SIMDALU_rr<0b0011010, 0b000, "cv.cmpgtu.h">;
+  def CV_CMPGTU_B :    SIMDALU_rr<0b0011010, 0b001, "cv.cmpgtu.b">;
+  def CV_CMPGTU_SC_H : SIMDALU_rr<0b0011010, 0b100, "cv.cmpgtu.sc.h">;
+  def CV_CMPGTU_SC_B : SIMDALU_rr<0b0011010, 0b101, "cv.cmpgtu.sc.b">;
+
+  def CV_CMPGEU_H :    SIMDALU_rr<0b0011110, 0b000, "cv.cmpgeu.h">;
+  def CV_CMPGEU_B :    SIMDALU_rr<0b0011110, 0b001, "cv.cmpgeu.b">;
+  def CV_CMPGEU_SC_H : SIMDALU_rr<0b0011110, 0b100, "cv.cmpgeu.sc.h">;
+  def CV_CMPGEU_SC_B : SIMDALU_rr<0b0011110, 0b101, "cv.cmpgeu.sc.b">;
+
+  def CV_CMPLTU_H :    SIMDALU_rr<0b0100010, 0b000, "cv.cmpltu.h">;
+  def CV_CMPLTU_B :    SIMDALU_rr<0b0100010, 0b001, "cv.cmpltu.b">;
+  def CV_CMPLTU_SC_H : SIMDALU_rr<0b0100010, 0b100, "cv.cmpltu.sc.h">;
+  def CV_CMPLTU_SC_B : SIMDALU_rr<0b0100010, 0b101, "cv.cmpltu.sc.b">;
+
+  def CV_CMPLEU_H :    SIMDALU_rr<0b0100110, 0b000, "cv.cmpleu.h">;
+  def CV_CMPLEU_B :    SIMDALU_rr<0b0100110, 0b001, "cv.cmpleu.b">;
+  def CV_CMPLEU_SC_H : SIMDALU_rr<0b0100110, 0b100, "cv.cmpleu.sc.h">;
+  def CV_CMPLEU_SC_B : SIMDALU_rr<0b0100110, 0b101, "cv.cmpleu.sc.b">;  
+
+  def CV_CPLXMUL_R :    SIMDALU_rr<0b0101010, 0b000, "cv.cplxmul.r">;
+  def CV_CPLXMUL_I :    SIMDALU_rr<0b0101011, 0b000, "cv.cplxmul.i">;
+ 
+  def CV_CPLXMUL_R_DIV2 :    SIMDALU_rr<0b0101010, 0b010, "cv.cplxmul.r.div2">;
+  def CV_CPLXMUL_I_DIV2 :    SIMDALU_rr<0b0101011, 0b010, "cv.cplxmul.i.div2">;
+ 
+  def CV_CPLXMUL_R_DIV4 :    SIMDALU_rr<0b0101010, 0b100, "cv.cplxmul.r.div4">;
+  def CV_CPLXMUL_I_DIV4 :    SIMDALU_rr<0b0101011, 0b100, "cv.cplxmul.i.div4">; 
+
+  def CV_CPLXMUL_R_DIV8 :    SIMDALU_rr<0b0101010, 0b110, "cv.cplxmul.r.div8">;
+  def CV_CPLXMUL_I_DIV8 :    SIMDALU_rr<0b0101011, 0b110, "cv.cplxmul.i.div8">;
+
+  def CV_SUBROTMJ :    SIMDALU_rr<0b0110010, 0b000, "cv.subrotmj">;
+ 
+  def CV_SUBROTMJ_DIV2 :    SIMDALU_rr<0b0110010, 0b010, "cv.subrotmj.div2">;
+  
+  def CV_SUBROTMJ_DIV4 :    SIMDALU_rr<0b0110010, 0b100, "cv.subrotmj.div4">; 
+  
+  def CV_SUBROTMJ_DIV8 :    SIMDALU_rr<0b0110010, 0b110, "cv.subrotmj.div8">;  
+
+  def CV_ADD_DIV2 :    SIMDALU_rr<0b0110110, 0b010, "cv.add.div2">;
+
+  def CV_ADD_DIV4 :    SIMDALU_rr<0b0110110, 0b100, "cv.add.div4">;
+
+  def CV_ADD_DIV8 :    SIMDALU_rr<0b0110110, 0b110, "cv.add.div8">;
+
+  def CV_SUB_DIV2 :    SIMDALU_rr<0b0111010, 0b010, "cv.sub.div2">;
+
+  def CV_SUB_DIV4 :    SIMDALU_rr<0b0111010, 0b100, "cv.sub.div4">;
+
+  def CV_SUB_DIV8 :    SIMDALU_rr<0b0111010, 0b110, "cv.sub.div8">; 
 }
 
 let Predicates = [HasExtXCoreVMac], hasSideEffects = 0, mayLoad = 0, mayStore = 0 in {
